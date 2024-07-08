@@ -68,6 +68,5 @@ module.exports = {
     type: "どんなコミットですかっ！:",
     subject: "じゃあ，変更点簡潔に教えて！:\n",
     issues: "issue番号いくつ～？\n",
-    confirmCommit: "この内容でコミットするよ！いいかな？\n",
   },
 };
