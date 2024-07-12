@@ -1,0 +1,18 @@
+basePath: /
+host: localhost:8080
+info:
+  contact: {}
+  description: こたつねこの REST API
+  license:
+    name: BSD-3-Clause license
+    url: https://github.com/rayfiyo/kotatuneko-rest?tab=BSD-3-Clause-1-ov-file
+  termsOfService: http://localhost:8080/
+  title: Kotatuneko REST API
+  version: "1.0"
+paths: {}
+securityDefinitions:
+  Bearer:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

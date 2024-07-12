@@ -1,0 +1,24 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "こたつねこの REST API",
+        "title": "Kotatuneko REST API",
+        "termsOfService": "http://localhost:8080/",
+        "contact": {},
+        "license": {
+            "name": "BSD-3-Clause license",
+            "url": "https://github.com/rayfiyo/kotatuneko-rest?tab=BSD-3-Clause-1-ov-file"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "paths": {},
+    "securityDefinitions": {
+        "Bearer": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}
