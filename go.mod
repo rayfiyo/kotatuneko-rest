@@ -1,6 +1,6 @@
-module github.com/rayfiyo/kotatuneko-RestAPI
+module github.com/rayfiyo/kotatuneko-rest
 
-go 1.22.4
+go 1.22.5
 
 require github.com/labstack/echo/v4 v4.12.0
 
