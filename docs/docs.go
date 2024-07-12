@@ -20,24 +20,9 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/": {
+        "/hello": {
             "get": {
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "HelloWorld"
-                ],
-                "summary": "Hello World !",
-                "operationId": "HelloWorldIndex",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
+                "responses": {}
             }
         }
     },

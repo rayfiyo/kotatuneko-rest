@@ -8,13 +8,17 @@ import (
 	"github.com/rayfiyo/kotatuneko-rest/internal/domain/entity"
 )
 
-// hello godoc
-// @Summary Hello World !
-// @ID      HelloWorldIndex
-// @Tags    HelloWorld
-// @Produce json
-// @Success     200     {string}        string  "OK"
-// @Router   / [get]
+// @Summary		Hello
+// @Description	Hello World 用
+// @Tags		Hello
+// @Accept		json
+// @Produce		json
+
+// @Success	200	{string}	string	"OK"
+// @Failure	400	{string}	string	"Bad Request"
+// @Failure	404	{string}	string	"Not Found"
+
+// @Router	/hello	[get]
 func Hello(c echo.Context) error {
 	return c.JSON(http.StatusOK, &entity.Response{
 		Int64:  1,

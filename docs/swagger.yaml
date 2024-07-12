@@ -10,19 +10,9 @@ info:
   title: Kotatuneko REST API
   version: "1.0"
 paths:
-  /:
+  /hello:
     get:
-      operationId: HelloWorldIndex
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            type: string
-      summary: Hello World !
-      tags:
-      - HelloWorld
+      responses: {}
 securityDefinitions:
   Bearer:
     in: header
