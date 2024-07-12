@@ -2,8 +2,8 @@ module.exports = {
   disableEmoji: false,
   format: "{type}{scope}: {emoji}{subject}",
   list: [
-    "fix",
     "feat",
+    "fix",
     "docs",
     "test",
     "refactor",
@@ -11,6 +11,8 @@ module.exports = {
     "style",
     "ci",
     "perf",
+    "add",
+    "del",
   ],
   maxMessageLength: 64,
   minMessageLength: 1,
@@ -62,6 +64,16 @@ module.exports = {
       description: "🔧設定ファイルの更新",
       emoji: "🔧",
       value: "setting",
+    },
+    add: {
+      description: "➕️ファイルの追加（❗️あんまり使うな❗️）",
+      emoji: "➕️",
+      value: "add",
+    },
+    del: {
+      description: "🗑️ファイルの削除（❗️あんまり使うな❗️）",
+      emoji: "🗑️",
+      value: "del",
     },
   },
   messages: {
