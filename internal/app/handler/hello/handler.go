@@ -5,20 +5,22 @@ import (
 
 	"github.com/labstack/echo/v4"
 	_ "github.com/rayfiyo/kotatuneko-rest/docs"
+	"github.com/rayfiyo/kotatuneko-rest/internal/domain/entity"
 )
 
-// @Summary		Hello
-// @Description	Hello World 用
-// @Tags		Hello
-// @Accept		string
-// @Produce		string
-
-// @Success	200	{string}	string	"OK"
-// @Failure	400	{string}	string	"Bad Request"
-// @Failure	404	{string}	string	"Not Found"
-
-// @Router		/hello [get]
-
+// hello godoc
+// @Summary Hello World !
+// @ID      HelloWorldIndex
+// @Tags    HelloWorld
+// @Produce json
+// @Success     200     {string}        string  "OK"
+// @Router   / [get]
 func Hello(c echo.Context) error {
-	return c.String(http.StatusOK, "Hello, World!")
+	return c.JSON(http.StatusOK, &entity.Response{
+		Int64:  1,
+		String: "example",
+		World: &entity.Item{
+			Text: "hello world !",
+		},
+	})
 }

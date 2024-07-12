@@ -9,7 +9,20 @@ info:
   termsOfService: http://localhost:8080/
   title: Kotatuneko REST API
   version: "1.0"
-paths: {}
+paths:
+  /:
+    get:
+      operationId: HelloWorldIndex
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Hello World !
+      tags:
+      - HelloWorld
 securityDefinitions:
   Bearer:
     in: header
