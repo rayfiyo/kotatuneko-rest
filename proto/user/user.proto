@@ -2,12 +2,12 @@ syntax = "proto3";
 
 package user;
 
+import "google/protobuf/empty.proto";
 import "user/rpc/user.proto";
-// import "google/protobuf/empty.proto";
 
 service UserService {
   rpc CreateUser(user.rpc.CreateUserRequest) returns (user.rpc.CreateUserResponse) {}
   rpc GetUserByID(user.rpc.GetUserByIDRequest) returns (user.rpc.GetUserByIDResponse) {}
-  // rpc UpdateUser(user.rpc.UpdateUserRequest) returns (google.protobuf.Empty) {}
-  // rpc DeleteUser(user.rpc.DeleteUserRequest) returns (google.protobuf.Empty) {}
+  rpc UpdateUser(user.rpc.UpdateUserRequest) returns (google.protobuf.Empty) {}
+  rpc DeleteUser(user.rpc.DeleteUserRequest) returns (google.protobuf.Empty) {}
 }

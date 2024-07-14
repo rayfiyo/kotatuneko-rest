@@ -29,11 +29,11 @@
     "resourcesUser": {
       "type": "object",
       "properties": {
-        "userId": {
+        "id": {
           "type": "string",
           "title": "UUID"
         },
-        "userName": {
+        "name": {
           "type": "string"
         }
       }

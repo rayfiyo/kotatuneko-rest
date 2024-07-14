@@ -20,12 +20,10 @@ message GetUserByIDResponse {
   user.resources.User user = 1;
 }
 
-/*
-   message UpdateUserRequest {
-    user.resources.User user = 1;
-   }
+message UpdateUserRequest {
+  user.resources.User user = 1;
+}
 
-   message DeleteUserRequest {
-    string user_id = 1;
-   }
-*/
+message DeleteUserRequest {
+  string user_id = 1;
+}

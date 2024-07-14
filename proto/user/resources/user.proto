@@ -3,6 +3,6 @@ syntax = "proto3";
 package user.resources;
 
 message User {
-  string user_id = 1; // UUID
-  string user_name = 2;
+  string id = 1; // UUID
+  string name = 2;
 }
