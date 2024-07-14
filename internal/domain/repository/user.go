@@ -1,12 +1,12 @@
 package user
 
 import (
-	"github.com/rayfiyo/kotatuneko-rest/internal/domain/entity"
+	"github.com/rayfiyo/kotatuneko-rest/proto"
 )
 
 type IRepository interface {
-	Create(user *entity.User) error
-	GetByID(id int) (*entity.User, error)
-	Update(user *entity.User) error
+	Create(user *proto.User) error
+	GetByID(id int) (*proto.User, error)
+	Update(user *proto.User) error
 	Delete(id int) error
 }

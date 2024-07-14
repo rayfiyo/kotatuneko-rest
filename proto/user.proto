@@ -2,9 +2,9 @@
 
 syntax = "proto3";
 
-package entity;
+package proto;
 
-option go_package = "github.com/rayfiyo/kotatuneko-rest/proto/entity";
+option go_package = "github.com/rayfiyo/kotatuneko-rest/proto";
 
 message User {
     string id = 1;
