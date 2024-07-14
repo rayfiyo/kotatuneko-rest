@@ -2,10 +2,8 @@ syntax = "proto3";
 
 package user;
 
-import "rpc/user.proto";
+import "user/rpc/user.proto";
 // import "google/protobuf/empty.proto";
-
-option go_package = "github.com/rayfiyo/kotatuneko-rest/gen/user";
 
 service UserService {
   rpc CreateUser(user.rpc.CreateUserRequest) returns (user.rpc.CreateUserResponse) {}

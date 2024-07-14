@@ -2,9 +2,7 @@ syntax = "proto3";
 
 package user.rpc;
 
-import "resources/user.proto";
-
-option go_package = "github.com/rayfiyo/kotatuneko-rest/gen/user";
+import "user/resources/user.proto";
 
 message CreateUserRequest {
   user.resources.User user_name = 1;
