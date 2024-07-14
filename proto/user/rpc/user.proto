@@ -22,12 +22,13 @@ message GetUserByIDResponse {
   user.resources.User user_name = 2;
 }
 
-message UpdateUserRequest {
-  user.resources.User user_id = 1;
-  user.resources.User user_name = 2;
-}
+/*
+   message UpdateUserRequest {
+     user.resources.User user_id = 1;
+     user.resources.User user_name = 2;
+   }
 
-message DeleteUserRequest {
-  user.resources.User user_id = 1;
-  user.resources.User user_name = 2;
-}
+   message DeleteUserRequest {
+     user.resources.User user_id = 1;
+   }
+*/
