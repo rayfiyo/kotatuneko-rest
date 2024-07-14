@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package user.rpc;
+
+import "resources/user.proto";
+
+option go_package = "github.com/rayfiyo/kotatuneko-rest/gen/user";
+
+message CreateUserRequest {
+  user.resources.User user_name = 1;
+}
+
+message CreateUserResponse {
+  user.resources.User user_id = 1;
+  user.resources.User user_name = 2;
+}
+
+message GetUserByIDRequest {
+  user.resources.User user_id = 1;
+}
+
+message GetUserByIDResponse {
+  user.resources.User user_id = 1;
+  user.resources.User user_name = 2;
+}
+
+message UpdateUserRequest {
+  user.resources.User user_id = 1;
+  user.resources.User user_name = 2;
+}
+
+message DeleteUserRequest {
+  user.resources.User user_id = 1;
+  user.resources.User user_name = 2;
+}

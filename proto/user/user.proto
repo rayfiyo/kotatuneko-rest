@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package user;
+
+import "rpc/user.proto";
+// import "google/protobuf/empty.proto";
+
+option go_package = "github.com/rayfiyo/kotatuneko-rest/gen/user";
+
+service UserService {
+  rpc CreateUser(user.rpc.CreateUserRequest) returns (user.rpc.CreateUserResponse) {}
+  rpc GetUserByID(user.rpc.GetUserByIDRequest) returns (user.rpc.GetUserByIDResponse) {}
+  // rpc UpdateUser(user.rpc.UpdateUserRequest) returns (google.protobuf.Empty) {}
+  // rpc DeleteUser(user.rpc.DeleteUserRequest) returns (google.protobuf.Empty) {}
+}

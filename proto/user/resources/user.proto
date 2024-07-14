@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package user.resources;
+
+option go_package = "github.com/rayfiyo/kotatuneko-rest/gen/user";
+
+message User {
+  string user_id = 1; // UUID
+  string user_name = 2;
+}
