@@ -1,0 +1,13 @@
+// protoc user.proto  --go_out=../../../../
+
+syntax = "proto3";
+
+package entity;
+
+option go_package = "github.com/rayfiyo/kotatuneko-rest/proto/entity";
+
+message User {
+    string id = 1;
+    string name = 2;
+    string password = 3;
+}
