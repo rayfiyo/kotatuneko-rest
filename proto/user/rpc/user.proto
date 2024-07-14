@@ -5,30 +5,27 @@ package user.rpc;
 import "user/resources/user.proto";
 
 message CreateUserRequest {
-  user.resources.User user_name = 1;
+  string user_name = 1; // UUID
 }
 
 message CreateUserResponse {
-  user.resources.User user_id = 1;
-  user.resources.User user_name = 2;
+  user.resources.User user = 1;
 }
 
 message GetUserByIDRequest {
-  user.resources.User user_id = 1;
+  string user_id = 1;
 }
 
 message GetUserByIDResponse {
-  user.resources.User user_id = 1;
-  user.resources.User user_name = 2;
+  user.resources.User user = 1;
 }
 
 /*
    message UpdateUserRequest {
-     user.resources.User user_id = 1;
-     user.resources.User user_name = 2;
+    user.resources.User user = 1;
    }
 
    message DeleteUserRequest {
-     user.resources.User user_id = 1;
+    string user_id = 1;
    }
 */

@@ -41,10 +41,7 @@
     "rpcCreateUserResponse": {
       "type": "object",
       "properties": {
-        "userId": {
-          "$ref": "#/definitions/resourcesUser"
-        },
-        "userName": {
+        "user": {
           "$ref": "#/definitions/resourcesUser"
         }
       }
@@ -52,10 +49,7 @@
     "rpcGetUserByIDResponse": {
       "type": "object",
       "properties": {
-        "userId": {
-          "$ref": "#/definitions/resourcesUser"
-        },
-        "userName": {
+        "user": {
           "$ref": "#/definitions/resourcesUser"
         }
       }
