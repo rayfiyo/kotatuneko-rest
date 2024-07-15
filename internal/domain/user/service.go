@@ -1,18 +1,17 @@
-package service
+package domain
 
 import (
 	"log"
 
-	"github.com/rayfiyo/kotatuneko-rest/internal/domain/repository"
 	"github.com/rayfiyo/kotatuneko-rest/pkg/errors"
 	"golang.org/x/crypto/bcrypt"
 )
 
 type UserService struct {
-	userRepository repository.UserRepository
+	userRepository UserRepository
 }
 
-func NewUserService(userRepo repository.UserRepository) *UserService {
+func NewUserService(userRepo UserRepository) *UserService {
 	return &UserService{userRepository: userRepo}
 }
 

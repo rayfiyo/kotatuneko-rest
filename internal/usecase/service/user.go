@@ -6,7 +6,7 @@ import (
 	"github.com/google/uuid"
 	entity "github.com/rayfiyo/kotatuneko-rest/gen/user/resources"
 	schema "github.com/rayfiyo/kotatuneko-rest/gen/user/rpc"
-	"github.com/rayfiyo/kotatuneko-rest/internal/domain/repository"
+	repository "github.com/rayfiyo/kotatuneko-rest/internal/domain/user"
 )
 
 // 依存性逆転の原則

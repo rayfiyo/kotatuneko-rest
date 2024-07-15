@@ -5,7 +5,6 @@ import (
 
 	"github.com/labstack/echo/v4"
 	_ "github.com/rayfiyo/kotatuneko-rest/docs"
-	// "github.com/rayfiyo/kotatuneko-rest/internal/domain/entity"
 )
 
 type Response struct {

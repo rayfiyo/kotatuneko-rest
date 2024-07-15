@@ -1,11 +1,7 @@
-package service
+package domain
 
 import (
-
-	// "github.com/google/uuid"
 	entity "github.com/rayfiyo/kotatuneko-rest/gen/user/resources"
-	// schema "github.com/rayfiyo/kotatuneko-rest/gen/user/rpc"
-	// "github.com/rayfiyo/kotatuneko-rest/internal/domain/repository"
 )
 
 type User struct {
