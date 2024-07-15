@@ -9,6 +9,7 @@ import (
 	"github.com/rayfiyo/kotatuneko-rest/internal/domain/repository"
 )
 
+// 依存性逆転の原則
 type UserService struct {
 	userRepository repository.UserRepository
 }
@@ -17,15 +18,13 @@ func NewUserService(userRepo repository.UserRepository) *UserService {
 	return &UserService{userRepository: userRepo}
 }
 
-func (s *UserService) CreateUser(userName string) (*entity.User, error) {
-	// UUID の生成
-	userID := uuid.New().String()
-	user := &entity.User{
-		Id:   userID,
-		Name: userName,
-	}
+func (s *UserService) CreateUser(user *entity.User, password string) (*entity.User, error) {
+	user, err := s.userRepository.Create(user, password)
 
-	if err := s.userRepository.CreateUser(user); err != nil {
+	// UUID の生成
+	user.Id = uuid.New().String()
+
+	if err != nil {
 		log.Printf("Error creating user: %v", err)
 		return nil, err
 	}
@@ -33,7 +32,7 @@ func (s *UserService) CreateUser(userName string) (*entity.User, error) {
 }
 
 func (s *UserService) GetUserByID(userID string) (*entity.User, error) {
-	user, err := s.userRepository.SelectUserByID(userID)
+	user, err := s.userRepository.SelectByID(userID)
 	if err != nil {
 		log.Printf("Error getting user by ID: %v", err)
 		return nil, err

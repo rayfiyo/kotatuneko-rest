@@ -17,11 +17,6 @@ func NewUser(user *entity.User) *User {
 	return &User{entityUser: user}
 }
 
-// 認証
-func (u *User) Authenticate() (bool, error) {
-	return u.userService.VerifyUserCredentials(u.entityUser.Id, u.entityUser.Password)
-}
-
 // ハッシュ化
 func (u *User) Hashing() error {
 	hashed, err := u.userService.HashPassword(u.entityUser.Password)
@@ -30,4 +25,9 @@ func (u *User) Hashing() error {
 	}
 	u.entityUser.Password = hashed
 	return nil
+}
+
+// 認証
+func (u *User) Authenticate() (bool, error) {
+	return u.userService.VerifyUserCredentials(u.entityUser.Id, u.entityUser.Password)
 }
