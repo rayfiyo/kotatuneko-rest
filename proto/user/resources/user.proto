@@ -4,5 +4,5 @@ package user.resources;
 
 message User {
   string id = 1; // UUID
-  string name = 2;
+  string name = 2; // user_name ( and display_name)
 }

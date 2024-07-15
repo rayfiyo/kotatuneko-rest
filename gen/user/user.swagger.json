@@ -34,7 +34,8 @@
           "title": "UUID"
         },
         "name": {
-          "type": "string"
+          "type": "string",
+          "title": "user_name ( and display_name)"
         }
       }
     },
