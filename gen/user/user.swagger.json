@@ -47,7 +47,7 @@
         }
       }
     },
-    "rpcGetUserByIDResponse": {
+    "rpcSelectUserResponse": {
       "type": "object",
       "properties": {
         "user": {
