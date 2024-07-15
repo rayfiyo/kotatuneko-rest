@@ -5,7 +5,7 @@ package user.rpc;
 import "user/resources/user.proto";
 
 message CreateUserRequest {
-  string user_name = 1; // UUID
+  string user_name = 1; // user_name ( and display_name)
 }
 
 message CreateUserResponse {
@@ -13,7 +13,7 @@ message CreateUserResponse {
 }
 
 message GetUserByIDRequest {
-  string user_id = 1;
+  string user_id = 1; // UUID
 }
 
 message GetUserByIDResponse {
