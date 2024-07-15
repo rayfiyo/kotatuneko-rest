@@ -1,12 +1,12 @@
-ARG GO_VERSION=1.22
-ARG ALPINE_VERSION=3.18
+ARG GO_VERSION=1.23rc1
+ARG ALPINE_VERSION=3.20
 
 FROM golang:${GO_VERSION}-alpine${ALPINE_VERSION}
 
 WORKDIR /go/src/kotatuneko-rest
 
 RUN apk update && apk add git
-RUN go install github.com/cosmtrek/air@latest
+RUN go install github.com/air-verse/air@latest
 
 COPY go.mod .
 COPY go.sum .
