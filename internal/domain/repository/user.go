@@ -5,7 +5,7 @@ import (
 )
 
 type UserRepository interface {
-	CreateUser(userName string) (*entity.User, error)
+	CreateUser(user *entity.User) error
 	SelectUserByID(userId string) (*entity.User, error)
 	UpdateUser(user *entity.User) error
 	DeleteUser(userId string) error
