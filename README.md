@@ -6,7 +6,7 @@ Hack-U 2024 福岡 こたつねこ ばっくえんど の Rest API
 
 ## Enterprise Business Rules
 
-proto/user
+proto/user/entity
 gen/user
 internal/domain/
 
