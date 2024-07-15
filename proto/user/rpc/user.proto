@@ -6,7 +6,6 @@ import "user/resources/user.proto";
 
 message CreateUserRequest {
   user.resources.User user = 1;
-  string password = 2; // hashed password
 }
 
 message CreateUserResponse {
@@ -14,11 +13,11 @@ message CreateUserResponse {
 }
 
 message SelectUserByIDRequest {
-  string id = 1; // UUID
+  string id = 1; // user_id (UUID)
 }
 
 message SelectUserByNameRequest {
-  string id = 1; // UUID
+  string name = 1; // user_name
 }
 
 message SelectUserResponse {
@@ -28,7 +27,6 @@ message SelectUserResponse {
 /*
    message UpdateUserRequest {
      user.resources.User user = 1;
-     string password = 2; // hashed password
    }
    message UpdateUserRequest {
      user.resources.User user = 1;
@@ -36,6 +34,5 @@ message SelectUserResponse {
 */
 
 message DeleteUserRequest {
-  string id = 1; // UUID
-  string password = 2; // hashed password
+  user.resources.User user = 1;
 }

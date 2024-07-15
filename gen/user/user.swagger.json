@@ -31,11 +31,16 @@
       "properties": {
         "id": {
           "type": "string",
-          "title": "UUID"
+          "title": "user_id (UUID)"
         },
         "name": {
           "type": "string",
-          "title": "user_name ( and display_name)"
+          "title": "user_name (and display_name)"
+        },
+        "password": {
+          "type": "string",
+          "format": "byte",
+          "title": "user_password (hashed)"
         }
       }
     },

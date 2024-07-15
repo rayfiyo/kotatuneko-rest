@@ -3,6 +3,7 @@ syntax = "proto3";
 package user.resources;
 
 message User {
-  string id = 1; // UUID
-  string name = 2; // user_name ( and display_name)
+  string id = 1; // user_id (UUID)
+  string name = 2; // user_name (and display_name)
+  bytes password = 3; // user_password (hashed)
 }
