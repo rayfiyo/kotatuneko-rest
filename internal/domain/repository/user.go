@@ -12,4 +12,5 @@ type UserRepository interface {
 	// SelectByID(ctx context.Context, userId uuid.UUID) (*entity.User, error)
 	Update(ctx context.Context, user *entity.User) error
 	Delete(ctx context.Context, id string) error
+	GetRanking(ctx context.Context, limit int) ([]*entity.User, error) // limit は人数
 }
