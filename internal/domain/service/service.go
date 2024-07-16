@@ -1,6 +1,7 @@
 package service
 
 import (
+	"context"
 	"log"
 
 	"github.com/rayfiyo/kotatuneko-rest/internal/domain/repository"
@@ -43,8 +44,8 @@ func (us *UserService) HashPassword(password []byte) ([]byte, error) {
 }
 
 // ユーザーの認証のロジック
-func (us *UserService) VerifyUserCredentials(userName string, password []byte) error {
-	user, err := us.userRepository.SelectByName(userName)
+func (us *UserService) VerifyUserCredentials(ctx context.Context, userName string, password []byte) error {
+	user, err := us.userRepository.SelectByName(ctx, userName)
 	if err != nil {
 		log.Printf("Selecting user by user name: %v", err)
 		return err

@@ -1,6 +1,8 @@
 package service
 
 import (
+	"context"
+
 	entity "github.com/rayfiyo/kotatuneko-rest/gen/user/resources"
 )
 
@@ -9,8 +11,11 @@ type User struct {
 	userService *UserService
 }
 
-func NewUser(user *entity.User) *User {
-	return &User{entityUser: user}
+func NewUser(user *entity.User, userService *UserService) *User {
+	return &User{
+		entityUser:  user,
+		userService: userService,
+	}
 }
 
 // ハッシュ化
@@ -24,6 +29,6 @@ func (u *User) Hashing() error {
 }
 
 // 認証
-func (u *User) Authenticate() error {
-	return u.userService.VerifyUserCredentials(u.entityUser.Id, u.entityUser.Password)
+func (u *User) Authenticate(ctx context.Context) error {
+	return u.userService.VerifyUserCredentials(ctx, u.entityUser.Id, u.entityUser.Password)
 }
