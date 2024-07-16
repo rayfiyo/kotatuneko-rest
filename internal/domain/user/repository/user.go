@@ -1,4 +1,4 @@
-package domain
+package repository
 
 import (
 	"github.com/rayfiyo/kotatuneko-rest/gen/user/entity"

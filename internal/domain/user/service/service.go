@@ -1,17 +1,18 @@
-package domain
+package service
 
 import (
 	"log"
 
+	"github.com/rayfiyo/kotatuneko-rest/internal/domain/user/repository"
 	"github.com/rayfiyo/kotatuneko-rest/pkg/errors"
 	"golang.org/x/crypto/bcrypt"
 )
 
 type UserService struct {
-	userRepository UserRepository
+	userRepository repository.UserRepository
 }
 
-func NewUserService(userRepo UserRepository) *UserService {
+func NewUserService(userRepo repository.UserRepository) *UserService {
 	return &UserService{userRepository: userRepo}
 }
 
@@ -42,11 +43,11 @@ func (us *UserService) HashPassword(password []byte) ([]byte, error) {
 }
 
 // ユーザーの認証のロジック
-func (us *UserService) VerifyUserCredentials(userName string, password []byte) (bool, error) {
+func (us *UserService) VerifyUserCredentials(userName string, password []byte) error {
 	user, err := us.userRepository.SelectByName(userName)
 	if err != nil {
 		log.Printf("Selecting user by user name: %v", err)
-		return false, err
+		return err
 	}
 
 	if err := bcrypt.CompareHashAndPassword(
@@ -54,7 +55,7 @@ func (us *UserService) VerifyUserCredentials(userName string, password []byte) (
 		user.Password, password,
 	); err != nil {
 		log.Printf("Username or/and Password do not match: %v", err)
-		return false, err
+		return err
 	}
-	return true, nil
+	return nil
 }

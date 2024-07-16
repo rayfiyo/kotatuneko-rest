@@ -1,4 +1,4 @@
-package domain
+package service
 
 import (
 	entity "github.com/rayfiyo/kotatuneko-rest/gen/user/resources"
@@ -24,6 +24,6 @@ func (u *User) Hashing() error {
 }
 
 // 認証
-func (u *User) Authenticate() (bool, error) {
+func (u *User) Authenticate() error {
 	return u.userService.VerifyUserCredentials(u.entityUser.Id, u.entityUser.Password)
 }
