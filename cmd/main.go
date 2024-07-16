@@ -4,7 +4,7 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	_ "github.com/rayfiyo/kotatuneko-rest/docs"
-	"github.com/rayfiyo/kotatuneko-rest/internal/app/handler/hello"
+	"github.com/rayfiyo/kotatuneko-rest/internal/interface/handler/hello"
 	echoswagger "github.com/swaggo/echo-swagger"
 )
 

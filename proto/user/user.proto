@@ -7,7 +7,8 @@ import "user/rpc/user.proto";
 
 service UserService {
   rpc CreateUser(user.rpc.CreateUserRequest) returns (user.rpc.CreateUserResponse) {}
-  rpc GetUserByID(user.rpc.GetUserByIDRequest) returns (user.rpc.GetUserByIDResponse) {}
-  rpc UpdateUser(user.rpc.UpdateUserRequest) returns (google.protobuf.Empty) {}
+  rpc SelectUserByID(user.rpc.SelectUserByIDRequest) returns (user.rpc.SelectUserResponse) {}
+  rpc SelectUserByName(user.rpc.SelectUserByNameRequest) returns (user.rpc.SelectUserResponse) {}
+  // rpc UpdateUser(user.rpc.UpdateUserRequest) returns (user.rpc.UpdateUserResponse) {}
   rpc DeleteUser(user.rpc.DeleteUserRequest) returns (google.protobuf.Empty) {}
 }
