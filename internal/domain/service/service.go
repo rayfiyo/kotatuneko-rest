@@ -3,7 +3,7 @@ package service
 import (
 	"log"
 
-	"github.com/rayfiyo/kotatuneko-rest/internal/domain/user/repository"
+	"github.com/rayfiyo/kotatuneko-rest/internal/domain/repository"
 	"github.com/rayfiyo/kotatuneko-rest/pkg/errors"
 	"golang.org/x/crypto/bcrypt"
 )
