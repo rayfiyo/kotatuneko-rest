@@ -6,9 +6,9 @@ import "google/protobuf/empty.proto";
 import "user/rpc/user.proto";
 
 service UserService {
-  rpc CreateUser(user.rpc.CreateUserRequest) returns (user.rpc.CreateUserResponse) {}
-  rpc SelectUserByID(user.rpc.SelectUserByIDRequest) returns (user.rpc.SelectUserResponse) {}
-  rpc SelectUserByName(user.rpc.SelectUserByNameRequest) returns (user.rpc.SelectUserResponse) {}
-  // rpc UpdateUser(user.rpc.UpdateUserRequest) returns (user.rpc.UpdateUserResponse) {}
-  rpc DeleteUser(user.rpc.DeleteUserRequest) returns (google.protobuf.Empty) {}
+  rpc Create(user.rpc.CreateRequest) returns (google.protobuf.Empty) {}
+  // rpc SelectByID(user.rpc.SelectByIDRequest) returns (user.rpc.SelectResponse) {}
+  rpc SelectByName(user.rpc.SelectByNameRequest) returns (user.rpc.SelectResponse) {}
+  rpc Update(user.rpc.UpdateRequest) returns (google.protobuf.Empty) {}
+  rpc Delete(user.rpc.DeleteRequest) returns (google.protobuf.Empty) {}
 }

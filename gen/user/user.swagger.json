@@ -17,16 +17,7 @@
   ],
   "paths": {},
   "definitions": {
-    "protobufAny": {
-      "type": "object",
-      "properties": {
-        "@type": {
-          "type": "string"
-        }
-      },
-      "additionalProperties": {}
-    },
-    "resourcesUser": {
+    "entityUser": {
       "type": "object",
       "properties": {
         "id": {
@@ -41,22 +32,28 @@
           "type": "string",
           "format": "byte",
           "title": "user_password (hashed)"
+        },
+        "score": {
+          "type": "string",
+          "format": "uint64",
+          "title": "game_score"
         }
       }
     },
-    "rpcCreateUserResponse": {
+    "protobufAny": {
       "type": "object",
       "properties": {
-        "user": {
-          "$ref": "#/definitions/resourcesUser"
+        "@type": {
+          "type": "string"
         }
-      }
+      },
+      "additionalProperties": {}
     },
-    "rpcSelectUserResponse": {
+    "rpcSelectResponse": {
       "type": "object",
       "properties": {
         "user": {
-          "$ref": "#/definitions/resourcesUser"
+          "$ref": "#/definitions/entityUser"
         }
       }
     },

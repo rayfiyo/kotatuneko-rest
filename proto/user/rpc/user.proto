@@ -2,37 +2,30 @@ syntax = "proto3";
 
 package user.rpc;
 
-import "user/resources/user.proto";
+import "user/entity/user.proto";
 
-message CreateUserRequest {
-  user.resources.User user = 1;
-}
-
-message CreateUserResponse {
-  user.resources.User user = 1;
-}
-
-message SelectUserByIDRequest {
-  string id = 1; // user_id (UUID)
-}
-
-message SelectUserByNameRequest {
-  string name = 1; // user_name
-}
-
-message SelectUserResponse {
-  user.resources.User user = 1;
+message CreateRequest {
+  user.entity.User user = 1;
 }
 
 /*
-   message UpdateUserRequest {
-     user.resources.User user = 1;
-   }
-   message UpdateUserRequest {
-     user.resources.User user = 1;
+   message SelectByIDRequest {
+     string id = 1; // user_id (UUID)
    }
 */
 
-message DeleteUserRequest {
-  user.resources.User user = 1;
+message SelectByNameRequest {
+  string name = 1; // user_name
+}
+
+message SelectResponse {
+  user.entity.User user = 1;
+}
+
+message UpdateRequest {
+  user.entity.User user = 1;
+}
+
+message DeleteRequest {
+  string id = 1; // user_id (UUID)
 }
