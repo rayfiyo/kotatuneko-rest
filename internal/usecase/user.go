@@ -17,6 +17,7 @@ type UserUsecase interface {
 	LoginUser(ctx context.Context, userName, password string) (*entity.User, error)
 	// LogoutUser(ctx context.Context, userID string) error
 	UpdateUser(ctx context.Context, user *entity.User) error
+	GetRanking(ctx context.Context, limit int) ([]*entity.User, error) // リミットは人数
 }
 
 type userUsecaseImpl struct {
@@ -115,4 +116,13 @@ func (uc *userUsecaseImpl) UpdateUser(ctx context.Context, user *entity.User) er
 	}
 
 	return nil
+}
+
+func (uc *userUsecaseImpl) GetRanking(ctx context.Context, limit int) ([]*entity.User, error) {
+	users, err := uc.userRepo.GetRanking(ctx, limit)
+	if err != nil {
+		log.Printf("Error fetching top users by score: %v", err)
+		return nil, err
+	}
+	return users, nil
 }
