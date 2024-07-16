@@ -37,6 +37,7 @@ func (us *UserService) HashPassword(password []byte) ([]byte, error) {
 	if err := bcrypt.CompareHashAndPassword(
 		hashed, password,
 	); err != nil {
+		log.Printf("Password verification fails (internal hashing): %v", err)
 		return nil, err
 	}
 
