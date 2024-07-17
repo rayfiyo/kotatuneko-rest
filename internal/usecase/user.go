@@ -7,8 +7,8 @@ import (
 	"github.com/google/uuid"
 
 	"github.com/rayfiyo/kotatuneko-rest/gen/user/entity"
-	"github.com/rayfiyo/kotatuneko-rest/internal/domain/repository"
-	"github.com/rayfiyo/kotatuneko-rest/internal/domain/service"
+	"github.com/rayfiyo/kotatuneko-rest/internal/domain/repository/user"
+	"github.com/rayfiyo/kotatuneko-rest/internal/domain/service/user"
 	"github.com/rayfiyo/kotatuneko-rest/pkg/errors"
 )
 

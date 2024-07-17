@@ -12,7 +12,7 @@ internal/domain/
 
 ## Application Business Rules
 
-internal/usecase/service
+internal/usecase/
 
 ## Interface Adapters
 
