@@ -2,10 +2,10 @@ package usecase
 
 import (
 	"context"
+	"database/sql"
 	"log"
 
 	"github.com/google/uuid"
-
 	"github.com/rayfiyo/kotatuneko-rest/gen/user/entity"
 	repository "github.com/rayfiyo/kotatuneko-rest/internal/domain/repository/user"
 	"github.com/rayfiyo/kotatuneko-rest/internal/domain/service/user"
@@ -37,8 +37,12 @@ func (uc *userUsecaseImpl) RegisterUser(ctx context.Context, userName, password 
 	// ユーザー名の重複チェック
 	existingUser, err := uc.userRepo.SelectByName(ctx, userName)
 	if err != nil {
-		log.Printf("Error checking duplicate user at registration: %v", err)
-		return nil, err
+		if err == sql.ErrNoRows {
+			log.Printf("[warning]行が無いけど，続行します: %v", err)
+		} else {
+			log.Printf("Error checking duplicate user at registration: %v", err)
+			return nil, err
+		}
 	}
 	if existingUser != nil {
 		return nil, errors.ErrUserAlreadyExists
