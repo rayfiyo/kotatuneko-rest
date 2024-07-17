@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "user/resources/user.proto",
+    "title": "user/entity/user.proto",
     "version": "version not set"
   },
   "consumes": [

@@ -6,13 +6,13 @@ Hack-U 2024 福岡 こたつねこ ばっくえんど の Rest API
 
 ## Enterprise Business Rules
 
-proto/user/entity
-gen/user
+proto/user/
+gen/user/
 internal/domain/
 
 ## Application Business Rules
 
-internal/usecase/service
+internal/usecase/
 
 ## Interface Adapters
 
