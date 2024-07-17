@@ -3,7 +3,7 @@ package service
 import (
 	"context"
 
-	entity "github.com/rayfiyo/kotatuneko-rest/gen/user/resources"
+	"github.com/rayfiyo/kotatuneko-rest/gen/user/entity"
 )
 
 type User struct {
