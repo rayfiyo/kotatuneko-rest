@@ -13,6 +13,7 @@ services:
       db:
         condition: service_healthy
   db:
+    container_name: ${DB_HOST}
     platform: linux/x86_64
     image: postgres:16.3
     ports:
@@ -20,10 +21,10 @@ services:
     volumes:
       - db-store:/var/lib/postgresql/data
     environment:
-      - HOSTNAME=${HOSTNAME}
-      - POSTGRES_DB=${POSTGRES_DB}
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_HOST=${DB_HOST}
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
     restart: always
     healthcheck: # here
       test:
@@ -31,7 +32,7 @@ services:
           "CMD-SHELL",
           "pg_isready",
           "-h",
-          "${HOSTNAME}",
+          "${POSTGRES_HOST}",
           "-U",
           "${POSTGRES_USER}",
           "-d",
