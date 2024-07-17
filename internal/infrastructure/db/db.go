@@ -22,6 +22,7 @@ func Init() (*sqlx.DB, error) {
 			log.Printf("Failed to open DB: %v", err)
 			return nil, err
 		}
+		log.Println(db)
 		return db, nil
 	}
 	return nil, errors.New("mode is invalid: " + config.Mode)

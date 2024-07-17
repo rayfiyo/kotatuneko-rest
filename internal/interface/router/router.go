@@ -8,10 +8,10 @@ import (
 func NewRouter(userHandler *handler.UserHandler) *echo.Echo {
 	e := echo.New()
 
-	e.POST("/regiseter", userHandler.RegisterUser)
+	e.POST("/register", userHandler.RegisterUser)
 	e.POST("/login", userHandler.LoginUser)
 	e.PUT("/update", userHandler.UpdateUser)
-	e.GET("/rankign", userHandler.GetRanking)
+	e.GET("/ranking", userHandler.GetRanking)
 
 	return e
 }
