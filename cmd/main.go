@@ -1,10 +1,17 @@
 package main
 
 import (
-	"github.com/labstack/echo/v4"
+	"log"
+
 	"github.com/labstack/echo/v4/middleware"
 	_ "github.com/rayfiyo/kotatuneko-rest/docs"
-	// "github.com/rayfiyo/kotatuneko-rest/internal/interface/handler/hello"
+	"github.com/rayfiyo/kotatuneko-rest/internal/domain/service/user"
+	"github.com/rayfiyo/kotatuneko-rest/internal/infrastructure/db"
+	"github.com/rayfiyo/kotatuneko-rest/internal/infrastructure/repository"
+	"github.com/rayfiyo/kotatuneko-rest/internal/interface/handler"
+	"github.com/rayfiyo/kotatuneko-rest/internal/interface/router"
+	"github.com/rayfiyo/kotatuneko-rest/internal/usecase"
+
 	echoswagger "github.com/swaggo/echo-swagger"
 )
 
@@ -23,13 +30,20 @@ import (
 // @name						Authorization
 
 func main() {
-	e := echo.New()
+	database := db.New()
+
+	userRepo := repository.NewUserRepository(database)
+	userService := service.NewUserService(userRepo)
+	userUsecase := usecase.NewUserUsecase(userRepo, userService)
+	userHandler := handler.NewUserHandler(userUsecase)
+
+	e := router.NewRouter(userHandler)
 
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 
-	// e.GET("/hello", hello.Hello)
 	e.GET("/swagger/*", echoswagger.WrapHandler)
 
+	log.Println("Server is running at http://localhost:8080")
 	e.Logger.Fatal(e.Start(":8080"))
 }
