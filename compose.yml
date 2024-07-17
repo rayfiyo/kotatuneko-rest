@@ -16,13 +16,13 @@ services:
     platform: linux/x86_64
     image: postgres:16.3
     ports:
-      - "5432:5432"
+      - "${DB_PORT}:5432"
     volumes:
       - db-store:/var/lib/postgresql/data
     environment:
-      - POSTGRES_HOST=${DB_HOST}
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_HOST=${DB_HOST}
       - POSTGRES_DB=${DB_NAME}
     restart: always
     healthcheck: # here
@@ -30,12 +30,12 @@ services:
         [
           "CMD-SHELL",
           "pg_isready",
-          "-h",
-          "${POSTGRES_HOST}",
           "-U",
-          "${POSTGRES_USER}",
+          "${DB_USER}",
+          "-h",
+          "${DB_HOST}",
           "-d",
-          "${POSTGRES_DB}",
+          "${DB_NAME}",
         ]
       interval: 30s
       timeout: 5s
