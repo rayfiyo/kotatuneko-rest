@@ -7,7 +7,7 @@ import (
 	"github.com/google/uuid"
 
 	"github.com/rayfiyo/kotatuneko-rest/gen/user/entity"
-	"github.com/rayfiyo/kotatuneko-rest/internal/domain/repository/user"
+	repository "github.com/rayfiyo/kotatuneko-rest/internal/domain/repository/user"
 	"github.com/rayfiyo/kotatuneko-rest/internal/domain/service/user"
 	"github.com/rayfiyo/kotatuneko-rest/pkg/errors"
 )
@@ -32,11 +32,12 @@ func NewUserUsecase(userRepo repository.UserRepository, userService *service.Use
 	}
 }
 
+// ユーザー情報の作成
 func (uc *userUsecaseImpl) RegisterUser(ctx context.Context, userName, password string) (*entity.User, error) {
 	// ユーザー名の重複チェック
 	existingUser, err := uc.userRepo.SelectByName(ctx, userName)
 	if err != nil {
-		log.Printf("Duplicate check at user registration: %v", err)
+		log.Printf("Error checking duplicate user at registration: %v", err)
 		return nil, err
 	}
 	if existingUser != nil {
@@ -47,7 +48,7 @@ func (uc *userUsecaseImpl) RegisterUser(ctx context.Context, userName, password 
 	if password == "" {
 		return nil, errors.ErrInvalidUsernameOrPassword
 	}
-	hashedPassword, err := uc.userService.HashPassword([]byte(password))
+	hashedPassword, err := uc.userService.HashPassword(password)
 	if err != nil {
 		log.Printf("Error hashing password: %v", err)
 		return nil, err
@@ -75,7 +76,7 @@ func (uc *userUsecaseImpl) RegisterUser(ctx context.Context, userName, password 
 }
 
 func (uc *userUsecaseImpl) LoginUser(ctx context.Context, userName, password string) (*entity.User, error) {
-	if err := uc.userService.VerifyUserCredentials(ctx, userName, []byte(password)); err != nil {
+	if err := uc.userService.VerifyUserCredentials(ctx, userName, password); err != nil {
 		log.Printf("Error verifying user credentials: %v", err)
 		return nil, errors.ErrInvalidUsernameOrPassword
 	}
@@ -89,6 +90,7 @@ func (uc *userUsecaseImpl) LoginUser(ctx context.Context, userName, password str
 	return user, nil
 }
 
+// ユーザー情報の更新
 func (uc *userUsecaseImpl) UpdateUser(ctx context.Context, user *entity.User) error {
 	existingUser, err := uc.userRepo.SelectByName(ctx, user.Name)
 	if err != nil {
@@ -100,7 +102,7 @@ func (uc *userUsecaseImpl) UpdateUser(ctx context.Context, user *entity.User) er
 	}
 
 	// パスワードのハッシュ化
-	if user.Password == nil {
+	if user.Password == "" {
 		return errors.ErrInvalidUsernameOrPassword
 	}
 	hashedPassword, err := uc.userService.HashPassword(user.Password)
@@ -118,6 +120,7 @@ func (uc *userUsecaseImpl) UpdateUser(ctx context.Context, user *entity.User) er
 	return nil
 }
 
+// ランキングの取得
 func (uc *userUsecaseImpl) GetRanking(ctx context.Context, limit int) ([]*entity.User, error) {
 	users, err := uc.userRepo.GetRanking(ctx, limit)
 	if err != nil {

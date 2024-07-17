@@ -4,7 +4,7 @@ import (
 	"context"
 	"log"
 
-	"github.com/rayfiyo/kotatuneko-rest/internal/domain/repository"
+	repository "github.com/rayfiyo/kotatuneko-rest/internal/domain/repository/user"
 	"github.com/rayfiyo/kotatuneko-rest/pkg/errors"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -18,34 +18,34 @@ func NewUserService(userRepo repository.UserRepository) *UserService {
 }
 
 // パスワードのハッシュ化のロジック
-func (us *UserService) HashPassword(password []byte) ([]byte, error) {
+func (us *UserService) HashPassword(password string) (string, error) {
 	// bcrypt.GenerateFromPassword の制約（73byte以上はだめ）
-	if len(password) > 72 {
-		log.Printf("Password is too long: %v", len([]byte(password)))
-		return nil, errors.ErrInvalidUsernameOrPassword
+	if len([]byte(password)) > 72 {
+		log.Printf("Password is too long: %v byte", len([]byte(password)))
+		return "", errors.ErrInvalidUsernameOrPassword
 	}
 
 	// ハッシュ化
-	hashed, err := bcrypt.GenerateFromPassword(
-		[]byte(password), bcrypt.DefaultCost)
+	hashedByte, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 	if err != nil {
 		log.Printf("Hashing: %v", err)
-		return nil, err
+		return "", err
 	}
+	hashed := string(hashedByte)
 
 	// 検証
 	if err := bcrypt.CompareHashAndPassword(
-		hashed, password,
+		[]byte(hashed), []byte(password),
 	); err != nil {
 		log.Printf("Password verification fails (internal hashing): %v", err)
-		return nil, err
+		return "", err
 	}
 
 	return hashed, nil
 }
 
 // ユーザーの認証のロジック
-func (us *UserService) VerifyUserCredentials(ctx context.Context, userName string, password []byte) error {
+func (us *UserService) VerifyUserCredentials(ctx context.Context, userName string, password string) error {
 	user, err := us.userRepository.SelectByName(ctx, userName)
 	if err != nil {
 		log.Printf("Selecting user by user name: %v", err)
@@ -54,10 +54,10 @@ func (us *UserService) VerifyUserCredentials(ctx context.Context, userName strin
 
 	if err := bcrypt.CompareHashAndPassword(
 		// ハッシュ済み, 未ハッシュ
-		user.Password, password,
+		[]byte(user.Password), []byte(password),
 	); err != nil {
 		log.Printf("Username or/and Password do not match: %v", err)
-		return err
+		return errors.ErrInvalidUsernameOrPassword
 	}
 	return nil
 }
