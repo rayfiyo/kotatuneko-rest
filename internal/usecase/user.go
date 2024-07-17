@@ -36,9 +36,13 @@ func NewUserUsecase(userRepo repository.UserRepository, userService *service.Use
 func (uc *userUsecaseImpl) RegisterUser(ctx context.Context, userName, password string) (*entity.User, error) {
 	// ユーザー名の重複チェック
 	existingUser, err := uc.userRepo.SelectByName(ctx, userName)
-	if err != nil && err != sql.ErrNoRows {
-		log.Printf("Error checking duplicate user at registration: %v", err)
-		return nil, err
+	if err != nil {
+		if err == sql.ErrNoRows {
+			log.Printf("[warning]行が無いけど，続行します: %v", err)
+		} else {
+			log.Printf("Error checking duplicate user at registration: %v", err)
+			return nil, err
+		}
 	}
 	if existingUser != nil {
 		return nil, errors.ErrUserAlreadyExists
