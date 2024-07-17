@@ -6,5 +6,5 @@ message User {
   string id = 1; // user_id (UUID)
   string name = 2; // user_name (and display_name)
   string password = 3; // user_password (hashed)
-  uint64 score = 4; // game_score
+  int64 score = 4; // game_score
 }
