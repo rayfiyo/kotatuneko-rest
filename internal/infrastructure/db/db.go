@@ -12,7 +12,7 @@ import (
 // データベース接続の設定
 func Init() (*sqlx.DB, error) {
 	if config.Mode == "dev" {
-		db, err := sqlx.Open("mysql", config.DB_DSN)
+		db, err := sqlx.Open("postgres", config.DB_DSN)
 		if err != nil {
 			log.Printf("Failed to open DB: %v", err)
 			return nil, err
