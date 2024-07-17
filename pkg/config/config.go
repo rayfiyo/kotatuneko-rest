@@ -17,9 +17,10 @@ var (
 	DB_DSN string
 )
 
-func LoadEnv() {
+func LoadEnv() error {
 	if err := godotenv.Load(); err != nil {
 		log.Printf("Failed to load the .env: %v", err)
+		return err
 	}
 
 	Mode = os.Getenv("MODE")
@@ -32,4 +33,6 @@ func LoadEnv() {
 		" user=" + DB_USER +
 		" password=" + DB_PASSWORD +
 		" dbname=" + DB_NAME
+
+	return nil
 }
