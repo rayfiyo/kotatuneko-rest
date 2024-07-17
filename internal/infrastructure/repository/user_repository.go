@@ -54,7 +54,8 @@ func (r *userRepositoryImpl) Delete(ctx context.Context, id string) error {
 // ランキングを取得
 func (r *userRepositoryImpl) GetRanking(ctx context.Context, limit int) ([]*entity.User, error) {
 	var users []*entity.User
-	query := `SELECT id, name, password, score FROM users ORDER BY score DESC LIMIT $1`
+
+	query := `SELECT id, name, score FROM users ORDER BY score DESC LIMIT $1`
 	err := r.db.SelectContext(ctx, &users, query, limit)
 	return users, err
 }
