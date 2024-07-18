@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	"github.com/jmoiron/sqlx"
-	"github.com/rayfiyo/kotatuneko-rest/gen/user/entity"
+	"github.com/rayfiyo/kotatuneko-rest/internal/domain/entity/user"
 	"github.com/rayfiyo/kotatuneko-rest/internal/infrastructure/db"
 	"github.com/stretchr/testify/assert"
 )
