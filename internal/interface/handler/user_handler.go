@@ -6,7 +6,7 @@ import (
 	"strconv"
 
 	"github.com/labstack/echo/v4"
-	"github.com/rayfiyo/kotatuneko-rest/gen/user/entity"
+	"github.com/rayfiyo/kotatuneko-rest/internal/domain/entity/user"
 	"github.com/rayfiyo/kotatuneko-rest/internal/usecase"
 	"github.com/rayfiyo/kotatuneko-rest/pkg/errors"
 )

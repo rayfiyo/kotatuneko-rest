@@ -3,7 +3,7 @@ package domain_repository
 import (
 	"context"
 
-	"github.com/rayfiyo/kotatuneko-rest/gen/user/entity"
+	"github.com/rayfiyo/kotatuneko-rest/internal/domain/entity/user"
 )
 
 type UserRepository interface {

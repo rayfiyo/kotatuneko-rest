@@ -5,7 +5,7 @@ import (
 	"database/sql"
 
 	"github.com/jmoiron/sqlx"
-	"github.com/rayfiyo/kotatuneko-rest/gen/user/entity"
+	"github.com/rayfiyo/kotatuneko-rest/internal/domain/entity/user"
 	"github.com/rayfiyo/kotatuneko-rest/internal/domain/repository/user"
 )
 
