@@ -2,8 +2,28 @@ package errors
 
 import (
 	"errors"
-	"fmt"
+	"runtime/debug"
 )
+
+type Error struct {
+	Status     int
+	Err        error
+	Msg        string
+	StackTrace string
+}
+
+func New(status int, err error, msg string) *Error {
+	return &Error{
+		Status:     status,
+		Err:        err,
+		Msg:        msg,
+		StackTrace: string(debug.Stack()),
+	}
+}
+
+func (e *Error) Error() string {
+	return e.Err.Error()
+}
 
 // 汎用エラー
 var (
@@ -43,16 +63,3 @@ var (
 	// 認証が失敗しました
 	ErrUnAuthorized = errors.New("認証が失敗しました")
 )
-
-func New(msg string) error {
-	return errors.New(msg)
-}
-
-func Is(err, target error) bool {
-	return errors.Is(err, target)
-}
-
-// 指定された entity が見つかりません: id
-func NewNotFoundError(entity, id string) error {
-	return fmt.Errorf("指定された%sが見つかりません: %s", entity, id)
-}

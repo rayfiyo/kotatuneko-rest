@@ -4,6 +4,7 @@ import (
 	"context"
 	"database/sql"
 	"log"
+	"net/http"
 
 	"github.com/google/uuid"
 	"github.com/rayfiyo/kotatuneko-rest/internal/domain/entity/user"
@@ -13,7 +14,7 @@ import (
 )
 
 type UserUsecase interface {
-	RegisterUser(ctx context.Context, userName, password string) (*entity.User, error)
+	RegisterUser(ctx context.Context, userName, password string) (*entity.User, *errors.Error)
 	LoginUser(ctx context.Context, userName, password string) (*entity.User, error)
 	// LogoutUser(ctx context.Context, userID string) error
 	UpdateUser(ctx context.Context, user *entity.User) error
@@ -33,7 +34,7 @@ func NewUserUsecase(userRepo repository.UserRepository, userService *service.Use
 }
 
 // ユーザー情報の作成
-func (uc *userUsecaseImpl) RegisterUser(ctx context.Context, userName, password string) (*entity.User, error) {
+func (uc *userUsecaseImpl) RegisterUser(ctx context.Context, userName, password string) (*entity.User, *errors.Error) {
 	// ユーザー名の重複チェック
 	existingUser, err := uc.userRepo.SelectByName(ctx, userName)
 	if err != nil {
@@ -41,7 +42,8 @@ func (uc *userUsecaseImpl) RegisterUser(ctx context.Context, userName, password 
 			log.Printf("[warning]行が無いけど，続行します: %v", err)
 		} else {
 			log.Printf("Error checking duplicate user at registration: %v", err)
-			return nil, err
+			newErr := errors.New(http.StatusBadRequest, err)
+			return nil, newErr
 		}
 	}
 	if existingUser != nil {

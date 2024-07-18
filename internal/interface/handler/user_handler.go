@@ -50,8 +50,8 @@ func (h *UserHandler) LoginUser(c echo.Context) error {
 
 	user, err := h.userUsecase.LoginUser(c.Request().Context(), req.UserName, req.Password)
 	if err != nil {
-		log.Printf("%v: %v \n", errors.ErrInternalServerError, err)
-		return echo.NewHTTPError(http.StatusInternalServerError, err.Error())
+		log.Printf("%v: %v \n", errors.ErrInvalidRequest, err)
+		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 	}
 
 	return c.JSON(http.StatusOK, user)
